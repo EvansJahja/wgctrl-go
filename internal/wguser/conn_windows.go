@@ -20,13 +20,13 @@ const (
 
 // dial is the default implementation of Client.dial.
 func dial(device string) (net.Conn, error) {
-	localSystem, err := windows.CreateWellKnownSid(windows.WinLocalSystemSid)
-	if err != nil {
-		return nil, err
-	}
+	// localSystem, err := windows.CreateWellKnownSid(windows.WinLocalSystemSid)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
 	return (&namedpipe.DialConfig{
-		ExpectedOwner: localSystem,
+		ExpectedOwner: nil,
 	}).DialTimeout(device, time.Duration(0))
 }
 
